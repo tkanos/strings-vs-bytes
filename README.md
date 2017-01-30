@@ -12,4 +12,6 @@ BenchmarkStringsReplace-4    	10000000	       137 ns/op	      64 B/op	       2 a
 BenchmarkBytesConcat-4       	50000000	        39.4 ns/op	      32 B/op	       1 allocs/op
 BenchmarkStringsConcat-4     	30000000	        51.0 ns/op	      32 B/op	       1 allocs/op
 BenchmarkStringsJoin-4       	20000000	        85.0 ns/op	      64 B/op	       2 allocs/op
+BenchmarkMapHints-4           100000000         12.3 ns/op        0 B/op         0 allocs/op
+BenchmarkMapsHints_Dont-4     100000000         22.0 ns/op        0 B/op         0 allocs/op
 ```
