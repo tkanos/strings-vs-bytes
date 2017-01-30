@@ -163,7 +163,7 @@ func BenchmarkStringsReplace(b *testing.B) {
 }
 
 //BenchmarkBytesConcat concats 2 bytes
-func BenchmarkBytesConcat(b *testing.B) {
+func BenchmarkBytesConcat2(b *testing.B) {
 
 	s1 := []byte("string to compare")
 	s2 := []byte("string to add")
@@ -178,7 +178,7 @@ func BenchmarkBytesConcat(b *testing.B) {
 }
 
 //BenchmarkStringsConcat concats 2 strings
-func BenchmarkStringsConcat(b *testing.B) {
+func BenchmarkStringsConcat2(b *testing.B) {
 
 	s1 := "string to compare"
 	s2 := "string to add"
@@ -194,7 +194,7 @@ func BenchmarkStringsConcat(b *testing.B) {
 
 //BenchmarkStringsJoin joins 2 strings
 //https://golang.org/pkg/strings/#Join
-func BenchmarkStringsJoin(b *testing.B) {
+func BenchmarkStringsJoin2(b *testing.B) {
 
 	s1 := "string to compare"
 	s2 := "string to add"
@@ -207,4 +207,41 @@ func BenchmarkStringsJoin(b *testing.B) {
 	}
 
 	result = r
+}
+
+//BenchmarkMapHints bench mymap[string(abytes)]
+func BenchmarkMapHints(b *testing.B) {
+	mymap := make(map[string]string)
+	mymap["key"] = "value"
+	abytes := []byte("key")
+
+	b.ResetTimer()
+	b.ReportAllocs()
+
+	var v string
+	for n := 0; n < b.N; n++ {
+		v, _ = mymap[string(abytes)]
+	}
+
+	result = v
+}
+
+//BenchmarkMapsHints_Dont bench key := string(abytes)
+//v, _ = mymap[key]
+func BenchmarkMapsHints_Dont(b *testing.B) {
+	mymap := make(map[string]string)
+	mymap["key"] = "value"
+	abytes := []byte("key")
+
+	b.ResetTimer()
+	b.ReportAllocs()
+
+	var v string
+	for n := 0; n < b.N; n++ {
+		key := string(abytes)
+		v, _ = mymap[key]
+	}
+
+	result = v
+
 }
