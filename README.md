@@ -15,3 +15,6 @@ BenchmarkStringsJoin-4       	20000000	        85.0 ns/op	      64 B/op	       2
 BenchmarkMapHints-4           100000000         12.3 ns/op        0 B/op         0 allocs/op
 BenchmarkMapsHints_Dont-4     100000000         22.0 ns/op        0 B/op         0 allocs/op
 ```
+
+### Link :
+https://medium.com/@felipedutratine/in-golang-should-i-work-with-bytes-or-strings-8bd1f5a7fd48#.6m2j7ssec
