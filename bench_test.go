@@ -24,9 +24,9 @@ func BenchmarkBytesToStrings(b *testing.B) {
 	result = r
 }
 
-//BenchmarkBytesCompare compare 2 []bytes.
+//BenchmarkBytesCompareSame compare 2 []bytes.
 //https://golang.org/pkg/bytes/#Compare
-func BenchmarkBytesCompare(b *testing.B) {
+func BenchmarkBytesCompareSame(b *testing.B) {
 
 	s1 := []byte("string to compare")
 	s2 := []byte("string to compare")
@@ -41,12 +41,46 @@ func BenchmarkBytesCompare(b *testing.B) {
 	result = r
 }
 
-//BenchmarkStringsCompare compare 2 strings.
+//BenchmarkBytesCompareDifferent compare 2 []bytes.
+//https://golang.org/pkg/bytes/#Compare
+func BenchmarkBytesCompareDifferent(b *testing.B) {
+
+	s1 := []byte("string to compare A")
+	s2 := []byte("string to compare B")
+
+	b.ResetTimer()
+	b.ReportAllocs()
+	var r int
+	for n := 0; n < b.N; n++ {
+		r = bytes.Compare(s1, s2)
+	}
+
+	result = r
+}
+
+//BenchmarkStringsCompareSame compare 2 strings.
 //https://golang.org/pkg/strings/#Compare
-func BenchmarkStringsCompare(b *testing.B) {
+func BenchmarkStringsCompareSame(b *testing.B) {
 
 	s1 := "string to compare"
 	s2 := "string to compare"
+
+	b.ResetTimer()
+	b.ReportAllocs()
+	var r int
+	for n := 0; n < b.N; n++ {
+		r = strings.Compare(s1, s2)
+	}
+
+	result = r
+}
+
+//BenchmarkStringsCompareDifferent compare 2 strings.
+//https://golang.org/pkg/strings/#Compare
+func BenchmarkStringsCompareDifferent(b *testing.B) {
+
+	s1 := "string to compare A"
+	s2 := "string to compare B"
 
 	b.ResetTimer()
 	b.ReportAllocs()
